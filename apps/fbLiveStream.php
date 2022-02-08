@@ -65,9 +65,7 @@ function _curl($config) {
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 	}
 	
-	// curl_setopt($ch, CURLOPT_USERAGENT, "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.157 Safari/537.36");
-
-	curl_setopt($ch, CURLOPT_USERAGENT, "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36");
+	curl_setopt($ch, CURLOPT_USERAGENT, "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.157 Safari/537.36");
 	curl_setopt($ch, CURLOPT_REFERER, $referer);
 
 	$result = curl_exec($ch);
@@ -82,8 +80,6 @@ function _curl($config) {
 
 
 if ( isset($_POST["login"]) || isset($_GET["login"])) {
-	// $EMAIL      = "go3mblo3h20@gmail.com";
-	// $PASSWORD   = "Nerakadunia1234,";
 	if ( isset($_POST["login"]) ) {
 		$EMAIL      = urlencode( htmlspecialchars($_POST["email"]) );
 		$PASSWORD   = urlencode( htmlspecialchars($_POST["password"]) );	
@@ -112,9 +108,6 @@ if ( isset($_POST["login"]) || isset($_GET["login"])) {
 		$getResponse = _curl($config);	
 
 		preg_match_all('!action="(.*?)"!', $getResponse, $actionURL);
-
-		// var_dump($actionURL);
-		// exit;
 		$action = $actionURL[1][0];
 		preg_match_all('!"jazoest" value="(.*?)"!', $getResponse, $jazoest);
 		$jazoest = $jazoest[1][0];
@@ -135,10 +128,6 @@ if ( isset($_POST["login"]) || isset($_GET["login"])) {
 		];
 
 		/* request login */		
-		// echo "https://www.facebook.com$action";
-		// exit();
-		// "jazoest=2952&lsd=AVoYjpS1Qv4&email=go3mblo3h2%40gmail.com&login_source=comet_headerless_login&next=&pass=surgadunia1234"
-
 		$fields = [
 			"jazoest" => $jazoest,
 			"lsd" => $lsd,
@@ -174,8 +163,6 @@ if ( isset($_POST["login"]) || isset($_GET["login"])) {
 		];
 		$getResponse = _curl($config);
 
-		echo $getResponse;
-		exit();
 		preg_match('!&__user=(.+?)&!',$getResponse, $user_id);
 		preg_match('!{"token":"(.+?)"}!',$getResponse, $fb_dtsg);
 		$payloadFile = __DIR__ . "/payloads/$sessCP"."_payload.json";
@@ -319,29 +306,18 @@ if ( isset($_POST["set-viewer"]) ) {
 		$payloadFile = __DIR__ . "/payloads/$sessCP"."_payload.json";
 
 		echo setViewer($liveURL, $cookieFile, $payloadFile);
-		//if ( $timer + ((int)$durasi)*60 > time() ) {
-			// sleep($delay);
-			// initViewer($liveURL, $timer, $durasi, $delay, $sessCP);
-		//}
 	}
 
 	$listPayloads = glob( __DIR__ . "/payloads/*.json");
 	$jumlah = (int)$jumlah;
 
-	// $timeEnd = time() + ((int)$durasi * 60);
-	// while ($timeEnd > time() ) {
-		// code...
-		if ( $jumlah < count($listPayloads) ) {
-			$sessCP = explode("/", $listPayloads[$jumlah]);
-			$sessCP = explode("_", end($sessCP) );
-			$sessCP = $sessCP[0];
-			//echo $jumlah . " " . $sessCP. " " . $durasi . "\n";
-
-			initViewer($liveURL, time(), (int)$durasi, (int)$delay, $sessCP);
-		}
-
-	// 	sleep((int)$delay);
-	// }
+	
+	if ( $jumlah < count($listPayloads) ) {
+		$sessCP = explode("/", $listPayloads[$jumlah]);
+		$sessCP = explode("_", end($sessCP) );
+		$sessCP = $sessCP[0];
+		initViewer($liveURL, time(), (int)$durasi, (int)$delay, $sessCP);
+	}
 
 	exit;
 }
