@@ -1,0 +1,107 @@
+body {
+	font-family: "Consolas";
+	background: #ACACAC;
+	user-select: none;
+}
+
+::-webkit-scrollbar {
+	cursor: pointer;
+	width: 5px;
+}
+::-webkit-scrollbar-track {
+	cursor: pointer;
+	background: #aaa;
+	width: 5px;
+}
+::-webkit-scrollbar-thumb {
+	background: #283947;
+	width: 5px;
+	border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover {
+	background: #2D9BEF;
+	cursor: pointer;
+	width: 5px;
+}
+
+.section-body {
+	padding: 4px;
+	position: relative;
+	font-size: 12px !important;
+}
+.input-control {
+	background: #DCDCDC;
+}
+.menu-bar {
+	width: 100%;
+	padding: 2px;
+	background: #222;
+	height: 30px;
+	position: relative;
+	-webkit-user-select: none;
+	display: flex;
+}
+.menu-bar .left-bar {
+	-webkit-app-region: drag;
+	margin: 0; padding: 0;
+	display: flex;
+	width: 100%;
+}
+.menu-bar .left-bar .title-app {
+	margin: 0; padding: 5px;
+	font-weight: bold;
+	color: #fff;
+	font-size: 13px;
+}
+.menu-bar .right-bar {
+	margin: 0;
+	padding: 0px 5px;
+	display: flex;
+	float: right;
+}
+.menu-bar .right-bar a {
+	display: inline-block;
+	background: #555;
+	height: 23px;
+	width: 23px;
+	border: 0px solid;
+	border-radius: 50%;
+	cursor: pointer;
+	color: #fff;
+	font-weight: bold;
+	user-select: none;
+	text-align: center;
+}
+.menu-bar .right-bar a:hover {
+	background: red;
+}
+
+label, input {
+	color: #404040 !important;
+}
+.box-card {
+	grid-gap: 5px !important;
+}
+.box-card .card {
+	padding: 0px !important;
+}
+textarea, input {
+	padding: 3px !important;
+}
+
+.dropdown-item:hover {
+	background: #ddd;
+}
+input.input-control, button.btn {
+	height: 25px !important;
+	font-size: 12px !important;
+}
+label, legend {
+	color: #404040 !important;
+}
+.alert .notif-head, .alert .notif-head i, .alert .notif-head span {
+	color: #0BDE0B !important;
+}
+.alert .notif-body, .alert .notif-body i, .alert .notif-body span {
+	color: #0791FC !important;
+}
